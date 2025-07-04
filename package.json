@@ -19,7 +19,11 @@
     "release": "npm run clean && npm run build:all",
     "postinstall": "electron-builder install-app-deps"
   },
-  "author": "Vysper Team",
+  "homepage": "",
+  "author": {
+    "name": "Hamza",
+    "email": "mhamzabinriaz1@yahoo.com"
+  },
   "license": "ISC",
   "dependencies": {
     "@google/generative-ai": "^0.24.1",
@@ -121,7 +125,8 @@
         }
       ],
       "icon": "assets/icons/app-icon.png",
-      "category": "Utility"
+      "category": "Utility",
+      "maintainer": "Hamza <mhamzabinriaz1@yahoo.com>"
     },
     "nsis": {
       "oneClick": false,
