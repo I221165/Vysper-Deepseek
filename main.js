@@ -521,6 +521,20 @@ class ApplicationController {
         process.exit(1);
       }
     });
+
+    // IPC handler to get the current DeepSeek model
+    ipcMain.handle('get-deepseek-model', async () => {
+      return config.get('llm.deepseek.model');
+    });
+
+    // IPC handler to set the DeepSeek model and update config/LLM service
+    ipcMain.handle('set-deepseek-model', async (event, model) => {
+      config.set('llm.deepseek.model', model);
+      if (llmService && llmService.updateModel) {
+        llmService.updateModel(model);
+      }
+      return true;
+    });
   }
 
   toggleSpeechRecognition() {

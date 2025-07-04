@@ -9,6 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const codingLanguageSelect = document.getElementById('codingLanguage');
     const activeSkillSelect = document.getElementById('activeSkill');
     const iconGrid = document.getElementById('iconGrid');
+    const deepseekModelInput = document.getElementById('deepseekModel');
 
     // Check if window.api exists
     if (!window.api) {
@@ -233,5 +234,15 @@ document.addEventListener('DOMContentLoaded', () => {
         if (e.key === 'Escape') {
             window.api.send('close-settings');
         }
+    });
+
+    // Load current DeepSeek model from settings
+    window.electronAPI.getDeepSeekModel().then(model => {
+        if (deepseekModelInput && model) deepseekModelInput.value = model;
+    });
+
+    deepseekModelInput.addEventListener('change', () => {
+        const selectedModel = deepseekModelInput.value;
+        window.electronAPI.setDeepSeekModel(selectedModel);
     });
 }); 

@@ -83,7 +83,11 @@ contextBridge.exposeInMainWorld('electronAPI', {
   receive: (channel, callback) => ipcRenderer.on(channel, callback),
   
   // Remove listeners
-  removeAllListeners: (channel) => ipcRenderer.removeAllListeners(channel)
+  removeAllListeners: (channel) => ipcRenderer.removeAllListeners(channel),
+  
+  // New methods
+  getDeepSeekModel: () => ipcRenderer.invoke('get-deepseek-model'),
+  setDeepSeekModel: (model) => ipcRenderer.invoke('set-deepseek-model', model),
 })
 
 contextBridge.exposeInMainWorld('api', {
